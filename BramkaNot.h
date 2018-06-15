@@ -10,8 +10,9 @@ class BramkaNot : public Komponent
         std::vector<std::shared_ptr<Komponent>> wartosci;
 
     public:
-        BramkaNot(std::shared_ptr<Komponent> l);
+        BramkaNot();
         bool operacja() override;
+        void dodajDoKompozycji(std::shared_ptr<Komponent> komp) override;
         void Accept(Visitator *v) override;
         std::vector<std::shared_ptr<Komponent>> getVector() override; 
         void setVectorValue(int index, bool value) override;

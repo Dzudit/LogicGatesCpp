@@ -6,7 +6,6 @@
 #include "BramkaAnd.h"
 #include "BramkaOr.h"
 #include "BramkaXOr.h"
-#include "Kompozyt.h"
 #include "Visitator.h"
 #include "VisitatorZaneguj.h"
 #include <vector>
@@ -20,7 +19,7 @@ ostream& operator<< (ostream &wyjscie, Komponent &s)
  int zliczZagniezdzenie(string a){
     
     auto l=1;
-    for(int i=1; i<a.length(); i++)
+    for(int i=1; i<a.size(); i++)
     {
          if(a[i]=='[' && a[i-1]!=',')
          {
@@ -41,7 +40,8 @@ int main()
   auto LAND2 = make_shared<Lisc>(true);
   auto LAND3 = make_shared<Lisc>(true);
   
-  auto BNOT = make_shared <BramkaNot>(LNOT);
+  auto BNOT = make_shared <BramkaNot>();
+  BNOT->dodajDoKompozycji(LNOT);
   auto BOR = make_shared<BramkaOr>();
   BOR->dodajDoKompozycji(LOR1);
   BOR->dodajDoKompozycji(LOR2);
@@ -97,9 +97,10 @@ int main()
   std::cout << *BAND2;
   BAND2->wyswietlWynikOperacji() << std::endl << std::endl;
 
-  auto bramka = "[BramkaAnd([BramkaXOr([BramkaNot({0})],[BramkaOr({1},{0},{0})])],[BramkaAnd({1},{1},{1})])]";
+  auto bramka = "[And([XOr([Not({0})],[Or({1},{0},{0})])],[And({1},{1},{1})])]";
   std::cout << "Zagniezdzenie bramki: " << zliczZagniezdzenie(bramka) << std::endl;
 
+  //Bramka b1("[And([XOr([Not({0})],[Or({1},{0},{0})])],[And({1},{1},{1})])]");
 
   system("pause");
 

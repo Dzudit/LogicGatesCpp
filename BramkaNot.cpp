@@ -1,9 +1,8 @@
 #include "BramkaNot.h"
 
-BramkaNot::BramkaNot(std::shared_ptr<Komponent> a)
+BramkaNot::BramkaNot()
 {
-    wartosci.push_back(a);
-};
+}
 bool BramkaNot::operacja()
 {
     return ! this->wartosci[0]->operacja(); //dostajemy sie do Liscia, operacja dla Liscia zwraca wartosc bool
@@ -22,9 +21,19 @@ bool BramkaNot::sprawdzCzyJestemLisciem()
 {
  return false;
 }
+void BramkaNot::dodajDoKompozycji(std::shared_ptr<Komponent> komp)
+{
+ wartosci.push_back(komp);
+}
 std::shared_ptr<Komponent> BramkaNot::Klonuj()
 {
-  return std::make_shared<BramkaNot>(wartosci[0]->Klonuj());
+  auto klon = std::make_shared<BramkaNot>();
+
+  if (!wartosci.empty())
+  {
+   klon->dodajDoKompozycji(wartosci[0]->Klonuj());
+  }
+  return klon;
 }
 std::ostream& BramkaNot::print(std::ostream & wyjscie)
 {
