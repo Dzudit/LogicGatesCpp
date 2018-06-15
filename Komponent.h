@@ -13,12 +13,13 @@ class Komponent
         virtual ~Komponent();
         virtual bool operacja() = 0;
         virtual void Accept( Visitator *v) = 0;
+        virtual void dodajDoKompozycji(std::shared_ptr<Komponent> komp) = 0;
         virtual std::vector<std::shared_ptr<Komponent>> getVector() = 0; 
         virtual void setVectorValue( int index , bool value) = 0;
         virtual bool sprawdzCzyJestemLisciem() = 0;
         virtual std::shared_ptr<Komponent>  Klonuj() = 0;
         virtual std::ostream& print(std::ostream &wyjscie) = 0;
-        virtual std::ostream& wyswietlWynikOperacji();
+        std::ostream& wyswietlWynikOperacji();
 };
 
 #endif
