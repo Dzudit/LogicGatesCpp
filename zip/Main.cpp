@@ -1,15 +1,14 @@
 #include <iostream>
 #include <cstdlib>
-//#include "Lisc.h"
+#include "Lisc.h"
 #include <memory>
-//#include "BramkaNot.h"
-//#include "BramkaAnd.h"
-//#include "BramkaOr.h"
-//#include "BramkaXOr.h"
+#include "BramkaNot.h"
+#include "BramkaAnd.h"
+#include "BramkaOr.h"
+#include "BramkaXOr.h"
 #include "Visitator.h"
 #include "VisitatorZaneguj.h"
 #include <vector>
-#include "FabrykaKompozycji.h"
 
 using namespace std;
 ostream& operator<< (ostream &wyjscie, Komponent &s)
@@ -101,18 +100,7 @@ int main()
   auto bramka = "[And([XOr([Not({0})],[Or({1},{0},{0})])],[And({1},{1},{1})])]";
   std::cout << "Zagniezdzenie bramki: " << zliczZagniezdzenie(bramka) << std::endl;
 
-  Bramka b1("[AND([XOR([NOT({0})],[OR({1},{0},{0})])],[AND({1},{1},{1})])]");
-  Fabryka f;
-  auto Twor = f.stworz(b1);
-  std::cout << *Twor;
-  Twor->wyswietlWynikOperacji() << std::endl << std::endl;
- 
-  Bramka b2("[NOT({1})]");
-  Fabryka f1;
-  auto Twor1 = f1.stworz(b2);
-  std::cout << *Twor1;
-  Twor1->wyswietlWynikOperacji() << std::endl << std::endl;
-
+  //Bramka b1("[And([XOr([Not({0})],[Or({1},{0},{0})])],[And({1},{1},{1})])]");
 
   system("pause");
 

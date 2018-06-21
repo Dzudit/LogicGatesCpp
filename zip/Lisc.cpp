@@ -17,10 +17,6 @@ std::vector<std::shared_ptr<Komponent>> Lisc::getVector()
 {
   return wartosci;
 }; 
-void Lisc::dodajDoKompozycji(std::shared_ptr<Komponent> komp)
-{
- wartosci.push_back(nullptr);
-}
 void Lisc::setVectorValue(int i, bool value){
     q=value;
 }

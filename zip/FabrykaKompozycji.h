@@ -36,7 +36,7 @@ class Fabryka
 {
  public:
   std::shared_ptr<Komponent> stworz(Bramka strukturaBramek);
-  std::shared_ptr<Komponent> dodajWartosci(std::shared_ptr<Komponent> komp, std::string liscie);
+  void dodajWartosci(std::shared_ptr<Komponent> komp, std::string liscie);
 
 };
 

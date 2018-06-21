@@ -4,20 +4,19 @@
 #include <iostream>
 #include <cstdlib>
 
-class Lisc : public Komponent
-{
-    private:   
-        bool q; 
+class BramkaNot : public Komponent 
+{ 
+    private:
         std::vector<std::shared_ptr<Komponent>> wartosci;
 
     public:
-        Lisc(bool value);
+        BramkaNot();
         bool operacja() override;
-        void Accept( Visitator *v) override;
+        void dodajDoKompozycji(std::shared_ptr<Komponent> komp) override;
+        void Accept(Visitator *v) override;
         std::vector<std::shared_ptr<Komponent>> getVector() override; 
         void setVectorValue(int index, bool value) override;
         bool sprawdzCzyJestemLisciem() override;
-        void dodajDoKompozycji(std::shared_ptr<Komponent> komp) override;
         std::shared_ptr<Komponent>  Klonuj() override;
         std::ostream& print(std::ostream &wyjscie) override;
 };

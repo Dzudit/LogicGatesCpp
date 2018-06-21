@@ -48,30 +48,23 @@ std::string Bramka::getLiscie()
 {
  return liscie;
 }
-std::shared_ptr<Komponent> Fabryka::dodajWartosci(std::shared_ptr<Komponent> komp, std::string liscie)
+void Fabryka::dodajWartosci(std::shared_ptr<Komponent> komp, std::string liscie)
 {
- for (int i = 1; i < liscie.size(); i++)
+ for (int i = 0; i < liscie.size(); i++)
  {
   if (isdigit(liscie[i]))
   {
-   auto boolean = true;
-   if (liscie[i] == '0')
-   {
-    boolean = false;
-   }
-   auto lisc = std::make_shared<Lisc>(boolean);
-   komp->dodajDoKompozycji(lisc);
-   i = i + 3;
+   auto lisc = std::make_shared<Lisc>(liscie[i]);
+  // komp->dodajDoKompozycji(lisc);
   }
  }
- return komp;
 }
 std::shared_ptr<Komponent> Fabryka::stworz(Bramka strukturaBramek) {
 
  auto nazwa = strukturaBramek.getNazwaBramki();
  if (nazwa == "NOT")
  {
-  auto NOT = std::make_shared<BramkaNot>();
+  auto NOT = std::make_shared<BramkaOr>();
   if (strukturaBramek.getMamLiscie())
   {
    dodajWartosci(NOT, strukturaBramek.getLiscie());
@@ -91,7 +84,7 @@ std::shared_ptr<Komponent> Fabryka::stworz(Bramka strukturaBramek) {
  }
  if (nazwa == "AND")
  {
-  auto AND = std::make_shared<BramkaAnd>();
+  auto AND = std::make_shared<BramkaOr>();
   if (strukturaBramek.getMamLiscie())
   {
    dodajWartosci(AND, strukturaBramek.getLiscie());
@@ -109,10 +102,11 @@ std::shared_ptr<Komponent> Fabryka::stworz(Bramka strukturaBramek) {
    }
   }
   return AND;
+
  }
  if (nazwa == "XOR")
  {
-  auto XOR = std::make_shared<BramkaXOr>();
+  auto XOR = std::make_shared<BramkaOr>();
   if (strukturaBramek.getMamLiscie())
   {
    dodajWartosci(XOR, strukturaBramek.getLiscie());
@@ -132,6 +126,7 @@ std::shared_ptr<Komponent> Fabryka::stworz(Bramka strukturaBramek) {
  }
  if (nazwa == "OR")
  {
+
   auto OR = std::make_shared<BramkaOr>();
   if (strukturaBramek.getMamLiscie())
   {
